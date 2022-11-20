@@ -1,0 +1,1 @@
+docker run -it --env-file ../configuration/licensing.env --name stk-javaNG --rm ansys/stk/stk-engine-java-ng:12.4.0-rocky8 sh
