@@ -4,6 +4,9 @@ FROM ${baseImage} AS builder
 # Add the engine packages to the builder stage
 COPY distributions/stk*.tgz /tmp/
 
+# Add find command (for Rocky 8)
+RUN yum -y install findutils
+
 # Unpack engine
 RUN set -e; \
     mkdir -p /stk; \
@@ -22,6 +25,9 @@ RUN set -e; \
 
 # Set the base image for the next stage
 FROM ${baseImage}
+
+# Install libnsl if missing (for Rocky 8)
+RUN yum -y install libnsl
 
 LABEL ANSYSLMD_LICENSE_FILE='Specifies the location of the Ansys Licensing Server. The format should be PORT@FQDN. If using a triad of license server, list all servers in the same format separated by semicolons.  Required.'
 
