@@ -1,0 +1,1 @@
+docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY --env-file ../configuration/licensing.env --name stk-java --rm ansys/stk/stk-engine-java:12.4.0-rocky8 sh

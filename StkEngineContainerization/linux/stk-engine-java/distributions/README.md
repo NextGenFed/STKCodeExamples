@@ -1,0 +1,1 @@
+Copy  `stk_jars_v${version}.tgz` and `stk_codesamples_v${version}.tgz` into this folder.
