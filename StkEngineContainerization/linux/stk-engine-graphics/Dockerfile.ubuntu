@@ -1,0 +1,32 @@
+# By default, start from the base STK Engine image
+ARG baseImage=ansys/stk/stk-engine-baseline:12.4.0-ubuntu22
+FROM ${baseImage}
+
+# Switch to root user
+USER root
+
+# Update repos
+RUN apt update && apt upgrade -y
+
+# Install graphics support
+RUN apt install -y mesa-utils
+   
+RUN mkdir /tmp/.X11-unix
+RUN chmod 1777 /tmp/.X11-unix
+
+# Switch back to non-root user
+USER stk
+
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/wsl/lib
+
+# Add the data package
+COPY distributions/stk_data*.tgz /tmp/
+
+# Unpack data into /home/stk (to restore 'STKData/VO')
+RUN set -e; \
+     find /tmp -name stk_data*.tgz -exec tar -zxf {} --strip-components=1 -C "${STK_USER_HOME}"/ \;
+
+# # Remove TGZ
+USER root
+RUN rm /tmp/*.tgz
+USER stk
