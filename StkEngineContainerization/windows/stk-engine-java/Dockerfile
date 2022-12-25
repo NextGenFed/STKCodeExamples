@@ -59,13 +59,15 @@ RUN Write-Host 'Verifying install ...'; \
 WORKDIR "C:/Program Files/AGI/STK 12"
 
 COPY distributions/*.tgz ./
+COPY distributions/AgJNI_DLLs_12.5.zip .
 
 RUN Write-Host 'Adding JARs and Code Samples ...'; \
-    tar -xvzf stk_jars_v12.4.0.tgz; \
-    move stk12.4.0/bin/*.jar bin; \
-    tar -xvzf stk_codesamples_v12.4.0.tgz; \
-    move stk12.4.0/CodeSamples .; \
+    Expand-Archive AgJNI_DLLs_12.5.zip -DestinationPath bin; \
+    tar -xvzf stk_jars_v12.4.0.tgz; move stk12.4.0/bin/*.jar bin; \
+    tar -xvzf stk_codesamples_v12.4.0.tgz; move stk12.4.0/CodeSamples .; \
     Set-Item -Path env:STK_INSTALL_DIR -Value 'C:\Program Files\AGI\STK 12'; \
-    [Environment]::SetEnvironmentVariable('STK_INSTALL_DIR','C:\Program Files\AGI\STK 12', 'Machine'); \
+    [Environment]::SetEnvironmentVariable('STK_INSTALL_DIR','C:\Program Files\AGI\STK 12', 'Machine');
+
+RUN [ "C:/Program Files/AGI/STK 12/bin/AgNewUserSetup.exe", "force", "showDlg=Off", "allowOnline" ]
 
 CMD ["jshell"]
