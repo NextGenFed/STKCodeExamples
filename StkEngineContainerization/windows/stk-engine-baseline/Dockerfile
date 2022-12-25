@@ -1,4 +1,4 @@
-ARG baseImage=mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
+ARG baseImage=mcr.microsoft.com/dotnet/framework/windowsserver-ltsc2019
 FROM $baseImage
 ARG agreeToLicense=no
 
