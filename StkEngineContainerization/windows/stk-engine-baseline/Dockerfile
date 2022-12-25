@@ -4,7 +4,7 @@ ARG agreeToLicense=no
 
 COPY distributions scripts C:/dist/
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser;"]
 RUN C:\dist\install.ps1 $Env:agreeToLicense
 
 USER ContainerUser
