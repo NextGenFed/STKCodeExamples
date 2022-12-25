@@ -56,6 +56,16 @@ RUN Write-Host 'Verifying install ...'; \
     \
     Write-Host 'Complete.'
 
-USER ContainerUser
+WORKDIR "C:/Program Files/AGI/STK 12"
+
+COPY distributions/*.tgz ./
+
+RUN Write-Host 'Adding JARs and Code Samples ...'; \
+    tar -xvzf stk_jars_v12.4.0.tgz; \
+    move stk12.4.0/bin/*.jar bin; \
+    tar -xvzf stk_codesamples_v12.4.0.tgz; \
+    move stk12.4.0/CodeSamples .; \
+    Set-Item -Path env:STK_INSTALL_DIR -Value 'C:\Program Files\AGI\STK 12'; \
+    [Environment]::SetEnvironmentVariable('STK_INSTALL_DIR','C:\Program Files\AGI\STK 12', 'Machine'); \
 
 CMD ["jshell"]
