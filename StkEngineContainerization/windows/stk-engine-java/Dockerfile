@@ -40,6 +40,22 @@ RUN Write-Host 'Verifying install ...'; \
     \
     Write-Host 'Complete.'
 
+RUN Write-Host ('Downloading apache-ant ZIP ...'); \
+    curl.exe -LfsSo apache-ant-1.9.16-bin.zip https://dlcdn.apache.org//ant/binaries/apache-ant-1.9.16-bin.zip ; \
+    Write-Host ('Installing apache-ant ...'); \
+    Expand-Archive apache-ant-1.9.16-bin.zip -DestinationPath C:\; \
+    Set-Item -Path env:ANT_HOME -Value 'C:\apache-ant-1.9.16'; \
+    [Environment]::SetEnvironmentVariable('ANT_HOME','C:\apache-ant-1.9.16', 'Machine'); \
+    Set-Item -Path env:Path -Value ($env:PATH + ';C:\apache-ant-1.9.16\bin'); \
+    [Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\apache-ant-1.9.16\bin', 'Machine'); \
+    Write-Host ('Removing  apache-ant ZIP ...'); \
+    Remove-Item apache-ant-1.9.16-bin.zip -Force
+
+RUN Write-Host 'Verifying install ...'; \
+    Write-Host 'ant -version'; ant -version; \
+    \
+    Write-Host 'Complete.'
+
 USER ContainerUser
 
 CMD ["jshell"]
