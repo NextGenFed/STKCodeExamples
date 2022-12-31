@@ -70,4 +70,4 @@ RUN Write-Host 'Adding JARs and Code Samples ...'; \
 
 RUN [ "C:/Program Files/AGI/STK 12/bin/AgNewUserSetup.exe", "force", "showDlg=Off", "allowOnline" ]
 
-CMD ["jshell"]
+CMD ["cmd.exe"]
