@@ -2,6 +2,8 @@ ARG baseImage=mcr.microsoft.com/dotnet/framework/windowsserver-ltsc2019
 FROM $baseImage
 ARG agreeToLicense=no
 
+USER ContainerAdministrator
+
 COPY distributions scripts C:/dist/
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue'; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser;"]
