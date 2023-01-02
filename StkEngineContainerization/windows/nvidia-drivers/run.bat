@@ -1,1 +1,1 @@
-docker run -it --name test-nvidia --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --rm ansys/stk/nvidia-drivers:windowsserver-ltsc2022 cmd.exe
+docker run -it -v c:/Temp:C:/TempHost --name test-nvidia --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --rm ansys/stk/nvidia-drivers:windowsserver-ltsc2022 cmd.exe
