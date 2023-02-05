@@ -1,5 +1,5 @@
 # By default, start from the base STK Engine image
-ARG baseImage=ansys/stk/stk-engine-baseline:12.4.0-centos7
+ARG baseImage=ansys/stk/stk-engine-baseline:12.6.0-centos7
 FROM ${baseImage}
 
 # Switch to root user
@@ -21,13 +21,13 @@ RUN yum -y install glx-utils
 RUN mkdir /tmp/.X11-unix
 RUN chmod 1777 /tmp/.X11-unix
 
-# Add WSL support (for Rocky 9)
-RUN mv /usr/lib64/dri/swrast_dri.so /usr/lib64/dri/swrast_dri.so_back
-COPY swrast_dri.so  /usr/lib64/dri/
+# Add WSL support (uncomment for Rocky 9)
+# RUN mv /usr/lib64/dri/swrast_dri.so /usr/lib64/dri/swrast_dri.so_back
+# COPY swrast_dri.so  /usr/lib64/dri/
 
-RUN ln -s /usr/lib64/libLLVM-14.so /usr/lib64/libLLVM-14.so.1
-RUN  dnf install -y lm_sensors-libs
-RUN ln -sf /usr/lib64/libsensors.so.4.5.0 /usr/lib64/libsensors.so.5
+# RUN ln -s /usr/lib64/libLLVM-14.so /usr/lib64/libLLVM-14.so.1
+# RUN  dnf install -y lm_sensors-libs
+# RUN ln -sf /usr/lib64/libsensors.so.4.5.0 /usr/lib64/libsensors.so.5
 
 # Add find command (for Rocky 8)
 RUN yum -y install findutils
@@ -35,7 +35,7 @@ RUN yum -y install findutils
 # Switch back to non-root user
 USER stk
 
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/wsl/lib
+ENV LD_LIBRARY_PATH="${STK_USER_HOME}/bin:/usr/lib/wsl/lib"
 
 # Add the data package
 COPY distributions/stk_data*.tgz /tmp/
@@ -47,4 +47,5 @@ RUN set -e; \
 # # Remove TGZ
 USER root
 RUN rm /tmp/*.tgz
+
 USER stk

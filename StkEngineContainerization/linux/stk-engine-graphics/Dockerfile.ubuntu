@@ -1,5 +1,5 @@
 # By default, start from the base STK Engine image
-ARG baseImage=ansys/stk/stk-engine-baseline:12.4.0-ubuntu22
+ARG baseImage=ansys/stk/stk-engine-baseline:12.6.0-ubuntu22
 FROM ${baseImage}
 
 # Switch to root user
