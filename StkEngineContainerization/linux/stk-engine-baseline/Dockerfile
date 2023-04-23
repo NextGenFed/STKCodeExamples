@@ -1,6 +1,8 @@
 ARG baseImage=centos:7
 FROM ${baseImage} AS builder
 
+ARG removeVO=true
+
 # Add the engine packages to the builder stage
 COPY distributions/stk*.tgz /tmp/
 
@@ -20,8 +22,9 @@ RUN set -e; \
     rm -rf /stk/Data/LicAndReg/; \
     rm -rf /stk/Data/Resources/; \
     rm -rf /stk/Data/Viewer/; \
-    rm -rf /stk/STKData/VO; \
     rm -rf /stk/licensingclient/linx64/ClientSettings
+RUN if [ "$removeVO" == "true"]; then rm -rf /stk/STKData/VO; fi
+
 
 # Set the base image for the next stage
 FROM ${baseImage}
@@ -44,8 +47,8 @@ USER stk
 # Copy files from the builder stage
 COPY --from=builder --chown=stk /stk/ "${STK_USER_HOME}"/
 
-# Configure environment
-ENV LD_LIBRARY_PATH="${STK_USER_HOME}/bin" \
+# Configure environment (include wsl/lib, in case needed)
+ENV LD_LIBRARY_PATH="${STK_USER_HOME}/bin:/usr/lib/wsl/lib" \
     PATH="${STK_USER_HOME}/bin:${PATH}" \
     STK_CONFIG_DIR="${STK_USER_HOME}/config" \
     STK_INSTALL_DIR="${STK_USER_HOME}"

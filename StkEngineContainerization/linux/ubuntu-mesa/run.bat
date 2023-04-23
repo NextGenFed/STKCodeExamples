@@ -1,0 +1,1 @@
+docker run -it --name ubuntu-mesa --rm ubuntu-mesa:20.04 /bin/bash
