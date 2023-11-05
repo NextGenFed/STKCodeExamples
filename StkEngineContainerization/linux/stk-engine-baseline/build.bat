@@ -6,4 +6,6 @@ REM docker build --build-arg baseImage=rockylinux:9 -t ansys/stk/stk-engine-base
 
 REM docker build -t ansys/stk/stk-engine-baseline:12.6.0-ubuntu22 -f Dockerfile.ubuntu .
 
-docker build --build-arg baseImage=ubuntu-mesa:20.04 --build-arg removeVO=true -t ansys/stk/stk-engine:12.6-ubuntu20-mesa -f Dockerfile.ubuntu .
+REM docker build --build-arg baseImage=ubuntu-mesa:20.04 --build-arg removeVO=true -t ansys/stk/stk-engine:12.6.0-ubuntu20-mesa -f Dockerfile.ubuntu .
+
+docker build --build-arg baseImage=registry1.dso.mil/ironbank/redhat/ubi/ubi9:9.2 --build-arg removeVO=true -t ansys/stk/stk-engine-baseline:12.6.0-ubi9 -f Dockerfile .

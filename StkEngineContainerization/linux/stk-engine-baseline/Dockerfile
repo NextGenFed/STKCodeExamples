@@ -30,7 +30,12 @@ RUN if [ "$removeVO" == "true"]; then rm -rf /stk/STKData/VO; fi
 FROM ${baseImage}
 
 # Install libnsl if missing (for Rocky 8)
-RUN yum -y install libnsl
+#RUN yum -y install libnsl
+
+# Install libnsl if missing (for UBI 9)
+RUN dnf makecache
+RUN dnf -y install libnsl2
+RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
 
 LABEL ANSYSLMD_LICENSE_FILE='Specifies the location of the Ansys Licensing Server. The format should be PORT@FQDN. If using a triad of license server, list all servers in the same format separated by semicolons.  Required.'
 
