@@ -5,7 +5,7 @@ FROM ${baseImage}
 USER root
 
 # Install Java
-RUN yum -y install java-11-openjdk 
+RUN yum -y install java-11-openjdk-devel
 
 # Install Ant
 # RUN yum -y install ant
