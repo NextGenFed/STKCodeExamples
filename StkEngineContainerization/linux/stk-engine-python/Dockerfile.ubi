@@ -10,8 +10,8 @@ RUN dnf update -y --nodocs --allowerasing; \
     rm -rf /var/cache/dnf/*
 RUN pip install wheel
 
-# Switch back to non-root user
-USER stk
+# Switch back to non-root user?
+#USER stk
 
 # Update the path to include Python executables
 ENV PATH="${STK_USER_HOME}/.local/bin:${PATH}" \
