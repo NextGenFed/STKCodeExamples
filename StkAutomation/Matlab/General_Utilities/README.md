@@ -8,7 +8,7 @@ Please reference [this readme](./Clutter Simulator/README.md) for more informati
 
 ### Dependencies
 
-* Capabilities: N/A
+* Licenses: N/A
 * Other Scripts: [trim_or_pad.m](./Clutter Simulator/trim_or_pad.m), [create_clutter_map.m](./Clutter Simulator/create_clutter_map.m), [create_satellite_train_layer.m](./Clutter Simulator/create_satellite_train_layer.m), [create_star_info.m](./Clutter Simulator/create_star_info.m), [create_star_map.m](./Clutter Simulator/create_star_map.m),
 [draw_antialias_line.m](./Clutter Simulator/draw_antialias_line.m), [generate_2d_gaussian_psf.m](./Clutter Simulator/generate_2d_gaussian_psf.m), [mouse_figure.m](./Clutter Simulator/mouse_figure.m)
 * Scenario: N/A
@@ -29,20 +29,8 @@ convertTLEState('Satellite1','ePropagatorHPOP')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
-* Scenario: N/A
-
----
-
-## [create_normalized_frame_sequence.m](create_normalized_frame_sequence.m)
-
-This script takes a folder of eoir raw data files and normalizes the collection. That's because each frame of an EOIR synthetic scene is normalized to itself, so there's color variation in some frames. This script normalizes the collection to the first (or the selected frame). 
-
-### Dependencies
-
-* Capabilities: N/A
-* Other Scripts: save_colormapped_image.m
 * Scenario: N/A
 
 ---
@@ -66,7 +54,7 @@ coordSys = 'Satellite/Satellite2 RIC';
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration), [Analysis Workbench](https://www.agi.com/products/stk-systems-bundle/stk-analysis-workbench)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -90,7 +78,25 @@ FilterObjectsByType('Satellite', 'gps')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
+* Other Scripts: N/A
+* Scenario: N/A
+
+---
+
+## [generateSensorPointingFile.m](generateSensorPointingFile.m)
+
+This function will generate an attitude pointing file (.sp) for the specified sensor, using quaternions. For targeted sensors and/or sensors with multiple access intervals, this script will create multiple pointing files for each interval, and name them according to their start and stop times in EpSec.
+
+Example
+
+```matlab
+generateSensorPointingFile('Satellite/LEOSat/Sensor/LEOsensor', 'LEOSensorAttitude', 60)
+```
+
+### Dependencies
+
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -102,7 +108,7 @@ Connects to an existing STK instance and loops through every object in the scena
 
 ### Dependencies
 
-* Capabilities: Free
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: Any scenario open with at least one object
 
@@ -120,7 +126,7 @@ getSTKDCM('Satellite1','Body','CentralBody/Earth J2000','15 Apr 2021 18:00:30.00
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -140,7 +146,7 @@ root.registerevent('printRootEvents')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -168,7 +174,7 @@ object = root.GetObjectFromPath('Satellite/Satellite1');
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -186,7 +192,7 @@ Example:
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -205,20 +211,8 @@ StkHelp(satellite, 'offline')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
-* Scenario: N/A
-
----
-
-## [save_colormapped_image.m](save_colormapped_image.m)
-
-This script is run from the create_normalized_frame_sequence.m script. It takes the normalized data and saves it as a colormapped image. 
-
-### Dependencies
-
-* Capabilities: N/A
-* Other Scripts: create_normalized_frame_sequence.m
 * Scenario: N/A
 
 ---
@@ -236,7 +230,7 @@ StkHelp(satellite, 'offline')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -254,7 +248,7 @@ vgtImporterExporter('AWB','Ship/Ship1','Satellite/Satellite1')
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: N/A
 
@@ -266,7 +260,7 @@ This script will connect to a running instance of STK and generate persistent ac
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration), [Pro](https://www.agi.com/products/stk-systems-bundle/stk-professional)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: Any scenario with at least two objects that have access to each other at some point in the scenario analysis interval.
 
@@ -278,7 +272,7 @@ For an Astrogator satellite, grabs all segments of a specified type and returns 
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration), [Astrogator](https://www.agi.com/products/stk-specialized-modules/stk-astrogator)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf), [STK Premium Space](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-premium-space-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: Any scenario with a propagated Astrogator satellite.
 
@@ -290,7 +284,7 @@ Create a new time interval list given a time array or an STK Object with an offs
 
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration), [Analysis Workbench](https://www.agi.com/products/stk-systems-bundle/stk-analysis-workbench)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: Any scenario with a STK object.
 
@@ -299,11 +293,37 @@ Create a new time interval list given a time array or an STK Object with an offs
 ## [FOMDataPrv.m](FOMDataPrv.m)
 
 Get the "Figure of Merit: Time Value by Point" data provider values: Latitude, Longitude and FOM Value. This snippet assumes a scenario has already been created with a Coverage Definition and a Figure of Merit. To use the snippet the user must edit the script to redefine the path to the scenario file (the ScenarioPath variable), the Coverage Definition and FOM object names/paths, and the Time of interest (dataPrv.PreData).
- 
+
 ### Dependencies
 
-* Capabilities: Free, [Integration](https://www.agi.com/products/stk-systems-bundle/stk-integration), [Coverage](https://www.agi.com/products/stk-systems-bundle/stk-coverage)
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
 * Other Scripts: N/A
 * Scenario: Any scenario open with Coverage definition and Figure of Merit
+
+---
+
+## [Normalize_EOIR_Images](Normalize_EOIR_Images)
+
+This script accepts a directory of raw sensor output data from EOIR and normalizes the entire frame sequence. This is useful for stitching the frames together in a video so that any color variation between frames is eliminated. This can be used in conjunction with the image generation and movie-making Python scripts linked below.
+
+### Dependencies
+
+* Licenses: N/A
+* Other Scripts: [EOIR Synthetic Scene and Data Generation](../../Python/Scenario_Analysis/EOIR_Synthetic_Scene_and_Data_Generation)
+* Scenario: N/A
+
+---
+
+## [pushSat2STK.m](pushSat2STK.m)
+
+Creates a satellite object in STK using an ephemeris file and attitude file
+
+**NOTE**: Be sure to update the input section of the script before running
+
+### Dependencies
+
+* Licenses: [STK Pro](https://www.ansys.com/content/dam/amp/2022/june/webpage-requests/stk-product-page/brochures/stk-pro-brochure.pdf)
+* Other Scripts: N/A
+* Scenario: N/A
 
 ---
