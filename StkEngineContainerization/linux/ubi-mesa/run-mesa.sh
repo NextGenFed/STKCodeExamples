@@ -5,4 +5,5 @@ docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v /mnt/wslg:/mnt/wslg \
     --name ubi-mesa-test --rm ubi8:8.8m   /bin/bash
 
 # commands to test with
+# /usr/lib/wsl/lib/nvidia-smi
 # glxinfo -B

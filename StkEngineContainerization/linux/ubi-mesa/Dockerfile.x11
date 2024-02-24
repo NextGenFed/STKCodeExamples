@@ -1,5 +1,6 @@
 # Uncomment the first line below to use UBI image from ironbank
-ARG baseImage=registry1.dso.mil/ironbank/redhat/ubi/ubi8:8.8
+#ARG baseImage=registry1.dso.mil/ironbank/redhat/ubi/ubi8:8.8
+ARG baseImage=redhat/ubi8:8.8
 FROM ${baseImage}
 
 # Update repos
