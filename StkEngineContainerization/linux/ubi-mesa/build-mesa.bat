@@ -1,0 +1,1 @@
+docker build -t ubi8:8.8m  -f Dockerfile.mesa .
