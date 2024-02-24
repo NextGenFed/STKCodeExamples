@@ -1,0 +1,18 @@
+# Uncomment the first line below to use UBI image from ironbank
+ARG baseImage=registry1.dso.mil/ironbank/redhat/ubi/ubi8:8.8
+FROM ${baseImage}
+
+# Update repos
+RUN dnf makecache --refresh
+RUN dnf -y install dnf-plugins-core
+COPY repos/centos8.repo /etc/yum.repos.d/
+
+# Upgrade libraries and drivers
+RUN dnf -y update
+
+# Install X11 support
+RUN dnf -y --enablerepo="centos8*" install xorg-x11-utils xorg-x11-apps xorg-x11-server-Xvfb
+
+# For use in WSLg
+RUN mkdir /tmp/.X11-unix
+RUN chmod 1777 /tmp/.X11-unix
