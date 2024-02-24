@@ -1,0 +1,14 @@
+ARG baseImage=ubuntu:22.04
+FROM ${baseImage}
+
+# Update repos
+RUN apt-get -y update 
+
+# Upgrade libraries and drivers
+RUN apt-get -y upgrade
+
+# Install X11 support
+RUN apt-get -y install x11-utils x11-apps xvfb
+
+# For use in WSLg
+RUN mkdir /tmp/.X11-unix

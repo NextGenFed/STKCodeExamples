@@ -1,7 +1,7 @@
-ARG baseImage=ubuntu:20.04
+ARG baseImage=ubuntu:22.04x
 FROM ${baseImage}
 
-# Update repos
+# Update repos and add kisak-mesa
 RUN apt-get -y update 
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:kisak/kisak-mesa -y 
@@ -10,10 +10,8 @@ RUN apt-get -y update
 # Upgrade libraries and drivers
 RUN apt-get -y upgrade
 
-# Install graphics support
-RUN apt-get -y install mesa-utils x11-apps glmark2 xvfb
+# Install mesa utilities
+RUN apt-get -y install mesa-utils glmark2
 
 # For use in WSLg
-RUN mkdir /tmp/.X11-unix
-RUN chmod 1777 /tmp/.X11-unix
 ENV LD_LIBRARY_PATH="/usr/lib/wsl/lib"

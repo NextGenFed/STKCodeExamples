@@ -1,1 +1,0 @@
-docker build --build-arg baseImage=ubuntu:20.04 -t ubuntu-mesa:20.04  .
