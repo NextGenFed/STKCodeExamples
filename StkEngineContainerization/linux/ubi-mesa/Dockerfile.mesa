@@ -11,7 +11,7 @@ RUN dnf -y update
 
 # Install mesa drivers
 #RUN dnf -y --enablerepo="centos8*" install mesa-dri-drivers glx-utils
-RUN dnf -y --enablerepo="centos9*" install mesa-dri-drivers glx-utils
+RUN dnf -y --enablerepo="centos9*" install mesa-dri-drivers glx-utils mesa-libGLU
 
 # For use in WSLg (not honored with IB RedHat do to SELinux?)
 ENV LD_LIBRARY_PATH="/usr/lib/wsl/lib"

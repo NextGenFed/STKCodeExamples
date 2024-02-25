@@ -11,7 +11,7 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 
 # Install mesa utilities
-RUN apt-get -y install mesa-utils glmark2
+RUN apt-get -y install mesa-utils glmark2 libglu1-mesa
 
 # For use in WSLg
 ENV LD_LIBRARY_PATH="/usr/lib/wsl/lib"
