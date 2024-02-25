@@ -2,4 +2,6 @@ REM docker build --build-arg baseImage=ubuntu:22.04x -t ansys/stk/stk-engine-bas
 
 REM docker build --build-arg baseImage=ubi8:8.8x -t ansys/stk/stk-engine-baseline:12.6.0-ubi8.8x -f Dockerfile .
 
-docker build --build-arg baseImage=ubi9:9.2x -t ansys/stk/stk-engine-baseline:12.6.0-ubi9.2x -f Dockerfile .
+REM docker build --build-arg baseImage=ubi9:9.2x -t ansys/stk/stk-engine-baseline:12.6.0-ubi9.2x -f Dockerfile .
+
+docker build --build-arg baseImage=ubi9:9.2x -t ansys/stk/stk-engine-baseline:12.8.0-ubi9.2x -f Dockerfile .

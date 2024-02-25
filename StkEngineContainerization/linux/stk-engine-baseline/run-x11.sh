@@ -1,7 +1,7 @@
 # note: save with Linux EOL char (LF)
 docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY \
     --env-file ../configuration/licensing.env --name stk-engine-x11 \
-    --rm ansys/stk/stk-engine-baseline:12.6.0-ubi8.8x /bin/bash
+    --rm ansys/stk/stk-engine-baseline:12.8cd .0-ubi9.2x /bin/bash
 
 # -- Test commands
 # cat /etc/os-release

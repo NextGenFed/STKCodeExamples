@@ -4,13 +4,14 @@ FROM ${baseImage}
 # Update repos
 RUN dnf makecache --refresh
 RUN dnf -y install dnf-plugins-core
-COPY repos/centos8.repo /etc/yum.repos.d/
+COPY repos/*.repo /etc/yum.repos.d/
 
 # Upgrade libraries and drivers
 RUN dnf -y update
 
 # Install mesa drivers
-RUN dnf -y --enablerepo="centos8*" install mesa-dri-drivers glx-utils
+#RUN dnf -y --enablerepo="centos8*" install mesa-dri-drivers glx-utils
+RUN dnf -y --enablerepo="centos9*" install mesa-dri-drivers glx-utils
 
 # For use in WSLg (not honored with IB RedHat do to SELinux?)
 ENV LD_LIBRARY_PATH="/usr/lib/wsl/lib"
