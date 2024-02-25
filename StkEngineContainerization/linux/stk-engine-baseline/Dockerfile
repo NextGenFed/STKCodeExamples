@@ -26,12 +26,12 @@ RUN if [ "$removeVO" == "true"]; then rm -rf /stk/STKData/VO; fi
 FROM ${baseImage}
 
 # Add symlink for libnsl (for UBI 8)
-RUN ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
+#RUN ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
 
 # Install libnsl (for UBI 9)
-#RUN dnf makecache
-#RUN dnf -y install libnsl2
-#RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
+RUN dnf makecache
+RUN dnf -y install libnsl2
+RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
 
 LABEL ANSYSLMD_LICENSE_FILE='Specifies the location of the Ansys Licensing Server. The format should be PORT@FQDN. If using a triad of license server, list all servers in the same format separated by semicolons.  Required.'
 

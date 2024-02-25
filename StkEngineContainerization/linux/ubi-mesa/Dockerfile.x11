@@ -5,14 +5,14 @@ FROM ${baseImage}
 
 # Update repos
 RUN dnf makecache --refresh
-RUN dnf -y install dnf-plugins-core
-COPY repos/centos8.repo /etc/yum.repos.d/
 
 # Upgrade libraries and drivers
 RUN dnf -y update
 
 # Install X11 support
-RUN dnf -y --enablerepo="centos8*" install xorg-x11-utils xorg-x11-apps xorg-x11-server-Xvfb
+COPY repos/*.repo /etc/yum.repos.d/
+#RUN dnf -y --enablerepo="centos8*" install xorg-x11-utils xorg-x11-apps xorg-x11-server-Xvfb
+RUN dnf -y --enablerepo="centos9*" install xorg-x11-utils xterm xorg-x11-server-Xvfb
 
 # For use in WSLg
 RUN mkdir /tmp/.X11-unix
