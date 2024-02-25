@@ -1,10 +1,13 @@
-ARG baseImage=ubuntu:22.04
+ARG baseImage=centos:7
 FROM ${baseImage} AS builder
 
 ARG removeVO=true
 
 # Add the engine packages to the builder stage
 COPY distributions/stk*.tgz /tmp/
+
+# Add find command (for Rocky 8)
+RUN yum -y install findutils
 
 # Unpack engine
 RUN set -e; \
@@ -22,10 +25,17 @@ RUN set -e; \
     rm -rf /stk/licensingclient/linx64/ClientSettings
 RUN if [ "$removeVO" == "true"]; then rm -rf /stk/STKData/VO; fi
 
+
 # Set the base image for the next stage
 FROM ${baseImage}
 
-RUN apt-get update && apt-get install -y strace
+# Install libnsl if missing (for Rocky 8)
+#RUN yum -y install libnsl
+
+# Install libnsl if missing (for UBI 9)
+RUN dnf makecache
+RUN dnf -y install libnsl2
+RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
 
 LABEL ANSYSLMD_LICENSE_FILE='Specifies the location of the Ansys Licensing Server. The format should be PORT@FQDN. If using a triad of license server, list all servers in the same format separated by semicolons.  Required.'
 
@@ -42,8 +52,8 @@ USER stk
 # Copy files from the builder stage
 COPY --from=builder --chown=stk /stk/ "${STK_USER_HOME}"/
 
-# Configure environment
-ENV LD_LIBRARY_PATH="${STK_USER_HOME}/bin:${LD_LIBRARY_PATH}" \
+# Configure environment (include wsl/lib, in case needed)
+ENV LD_LIBRARY_PATH="${STK_USER_HOME}/bin:/usr/lib/wsl/lib" \
     PATH="${STK_USER_HOME}/bin:${PATH}" \
     STK_CONFIG_DIR="${STK_USER_HOME}/config" \
     STK_INSTALL_DIR="${STK_USER_HOME}"

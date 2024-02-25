@@ -6,9 +6,6 @@ ARG removeVO=true
 # Add the engine packages to the builder stage
 COPY distributions/stk*.tgz /tmp/
 
-# Add find command (for Rocky 8)
-RUN yum -y install findutils
-
 # Unpack engine
 RUN set -e; \
     mkdir -p /stk; \
@@ -25,17 +22,16 @@ RUN set -e; \
     rm -rf /stk/licensingclient/linx64/ClientSettings
 RUN if [ "$removeVO" == "true"]; then rm -rf /stk/STKData/VO; fi
 
-
 # Set the base image for the next stage
 FROM ${baseImage}
 
-# Install libnsl if missing (for Rocky 8)
-#RUN yum -y install libnsl
+# Add symlink for libnsl (for UBI 8)
+RUN ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
 
-# Install libnsl if missing (for UBI 9)
-RUN dnf makecache
-RUN dnf -y install libnsl2
-RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
+# Install libnsl (for UBI 9)
+#RUN dnf makecache
+#RUN dnf -y install libnsl2
+#RUN ln -s /lib64/libnsl.so.3 /lib64/libnsl.so.1
 
 LABEL ANSYSLMD_LICENSE_FILE='Specifies the location of the Ansys Licensing Server. The format should be PORT@FQDN. If using a triad of license server, list all servers in the same format separated by semicolons.  Required.'
 
